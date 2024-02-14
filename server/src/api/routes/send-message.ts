@@ -15,14 +15,12 @@ export async function sendMessage(app: FastifyInstance) {
         const { content } = messageBody.parse(request.body) 
         const { channel } = messageParam.parse(request.params)
 
-        // TODO: Fix duplicate user on send message with a sessionId/User assign
-
         let { sessionCookieId } = request.cookies
 
         if (!sessionCookieId) {
             sessionCookieId = randomUUID()
 
-            reply.setCookie('sessionId', sessionCookieId, {
+            reply.setCookie('sessionCookieId', sessionCookieId, {
                 path: '/',
                 maxAge: 60 * 60 * 24 * 30, // 30 days
                 signed: true,
@@ -52,6 +50,10 @@ export async function sendMessage(app: FastifyInstance) {
             }
         })
 
-        return reply.status(201).send({ message: message })
+        return reply.status(201).send({ 
+            message,
+            sessionCookieId,
+            user
+        })
     })
 }
