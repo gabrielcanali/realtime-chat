@@ -1,6 +1,8 @@
 import fastify from 'fastify'
 import cookie from '@fastify/cookie'
+import websocket from '@fastify/websocket'
 import { sendMessage } from './api/routes/send-message'
+import { displayMessage } from './api/ws/display-messages'
 
 const app = fastify()
 
@@ -14,7 +16,11 @@ app.register(cookie, {
     parseOptions: {}
 })
 
+app.register(websocket)
+
 app.register(sendMessage)
+
+app.register(displayMessage)
 
 // WS Display Message
 
