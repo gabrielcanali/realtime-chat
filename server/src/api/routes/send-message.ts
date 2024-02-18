@@ -2,6 +2,7 @@ import { FastifyInstance } from "fastify";
 import z from "zod";
 import { prisma } from "../../lib/prisma";
 import { randomUUID } from "crypto";
+import { messageDisplay } from "../../utils/message-pub-sub";
 
 export async function sendMessage(app: FastifyInstance) {
     app.post('/api/message/:channel', async (request, reply) => {
@@ -48,6 +49,12 @@ export async function sendMessage(app: FastifyInstance) {
                 channel,
                 content,
             }
+        })
+
+        messageDisplay.publish(channel, {
+            userId: message.userId,
+            content: message.content,
+            created_at: message.created_at
         })
 
         return reply.status(201).send({ 
