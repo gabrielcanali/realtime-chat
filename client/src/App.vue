@@ -1,17 +1,20 @@
 <template>
   <main>
     <ChatDisplay/>
+    <ChatInput/>
   </main>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
 import ChatDisplay from './components/ChatDisplay.vue'
+import ChatInput from './components/ChatInput.vue';
 
 export default defineComponent({
   components: {
-    ChatDisplay
-  }
+    ChatDisplay,
+    ChatInput
+}
 })
 </script>
   
@@ -23,5 +26,6 @@ export default defineComponent({
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
   }
 </style>

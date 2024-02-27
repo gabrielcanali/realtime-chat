@@ -42,9 +42,15 @@ export default async function getMessages(channel: string): Promise<IMessage[]> 
                 userId: 2,
                 content: "Não, valeu 👍",
                 created_at: new Date(),
+            },
+            {
+                id: 7,
+                userId: 1,
+                content: "😢",
+                created_at: new Date(),
             }
         ];
           resolve(messages);
-        }, 5000);
+        }, 3000);
     });
 }

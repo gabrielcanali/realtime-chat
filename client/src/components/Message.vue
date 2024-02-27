@@ -64,12 +64,14 @@ export default defineComponent({
         display: flex;
         flex-direction: column;
         text-align: left;
-        font-size: 1rem;
         color: black;
     }
     .message__info {
         font-size: 0.75rem; 
         color: rgb(73, 73, 73);
+    }
+    .message__content {
+        font-size: 1.125rem;
     }
     .message.self {
         align-self: flex-end;   
